@@ -5,7 +5,6 @@ import { Col, Row } from 'react-bootstrap';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import loader from '../assets/loader.gif';
-import poster from '../assets/poster3.jpg';
 
 class Index extends React.PureComponent {
     constructor() {
@@ -56,12 +55,7 @@ class Index extends React.PureComponent {
         }
     }
 
-    searchText() {
-        console.log(this.props.actionList)
-    }
-
     async showingData() {
-        console.log("data", this.props.actionList)
         if (this.props.actionList.length > 0) {
             this.setState({
                 dataList: this.props.actionList,
@@ -93,7 +87,6 @@ class Index extends React.PureComponent {
     }
 
     handleLanguage = (value) => {
-        console.log(value)
         console.log(this.props.actionList)
         if (value != '') {
             if (this.props.actionList.length) {
@@ -121,29 +114,38 @@ class Index extends React.PureComponent {
     render() {
         console.log(this.state)
         return (
-            <div className="index-main-div" onMouseOut={() => this.handleScroll()}>
+            <React.Fragment>
                 <Header data={this.state.movieCato} onSelectLanguage={this.handleLanguage} />
-                {
-                    this.state.loaded ?
-                        <div className="index-align">
-                            <img src={loader} style={{ width: "50px" }} />
-                        </div>
-                        :
-                        <Row className="index-image-div" >
-                            {
-                                this.state.dataList.map((item, index) =>
-                                    <Col xs="4" key={index} className="mar-bottom-90">
-                                        <img src={poster} className="img-size" />
-                                        <div className="img-name">
-                                            {item.name}
-                                        </div>
-                                    </Col>
-                                )
-                            }
-                        </Row>
+                <div className="index-main-div" onMouseOut={() => this.handleScroll()}>
+                    {
+                        this.state.loaded ?
+                            <div className="index-align">
+                                <img src={loader} style={{ width: "50px" }} />
+                            </div>
+                            :
+                            <Row className="index-image-div" >
+                                {
+                                    this.state.dataList.length > 0 ?
 
-                }
-            </div>
+                                        this.state.dataList.map((item, index) =>
+                                            <Col xs="4" key={index} className="mar-bottom-90">
+                                                <img src={item.poster} className="img-size" />
+                                                <div className="img-name">
+                                                    {item.name}
+                                                </div>
+                                            </Col>
+                                        )
+
+                                        :
+                                        <Col xs="12" className="mar-bottom-90">
+                                            <h3>Records not found..</h3>
+                                        </Col>
+                                }
+
+                            </Row>
+                    }
+                </div>
+            </React.Fragment>
 
         )
     }

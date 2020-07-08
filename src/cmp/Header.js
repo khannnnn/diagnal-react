@@ -6,12 +6,6 @@ import Search from '../assets/search.png';
 class Header extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            search: true
-        }
-    }
-    searchText(value) {
-        console.log(value)
     }
 
     handleLangChange = (value) => {
@@ -22,7 +16,7 @@ class Header extends React.PureComponent {
         console.log("Header", this.props.data)
         return (
             <React.Fragment>
-                <Row className="header-div">
+                <Row className="header-div fixed-top">
                     <Col xs="6">
                         <img src={Back} width="20px" height="20px" className="pointer" title="Back..!" />
                         <span className="mar-left-10">{this.props.data}</span>

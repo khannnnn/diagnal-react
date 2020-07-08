@@ -28,6 +28,7 @@
 .index-main-div{
   color: white;
   padding: 30px;
+  margin-top: 156px
 }
 
 .index-align {
@@ -57,6 +58,10 @@
   height: 156px;
   margin-bottom: 36px;
   padding-top: 73px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: black;
+  color: white;
 }
 
 .pointer{
@@ -69,4 +74,8 @@
 
 .text-right{
   text-align: right;
+}
+
+.fixed-top {
+  position: -webkit-sticky;
 }
